@@ -29,7 +29,10 @@ public class SetOfStrings {
 	 * @param element a String
 	 */
 	public boolean isMember(String element) {
-		return true;
+		if ((setv.isEmpty() == false) && (setv.contains(element)) {
+			return true;
+		} else {
+			return false;
 	}
 
 	/**
