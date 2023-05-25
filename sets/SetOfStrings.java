@@ -1,3 +1,7 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.NoSuchElementException;
+
 public class SetOfStrings {
 	private List<String> setv;
 
@@ -29,11 +33,12 @@ public class SetOfStrings {
 	 * @param element a String
 	 */
 	public boolean isMember(String element) {
-		if ((setv.isEmpty() == false) && (setv.contains(element)) {
+		if ((setv.isEmpty() == false) && (setv.contains(element))) {
 			return true;
 		} else {
 			return false;
 	}
+}
 
 	/**
 	 * return a List<String> of the elements of this SetOfStrings
@@ -51,7 +56,8 @@ public class SetOfStrings {
 	 * @param newElement a String
 	 */
 	public void insertElement(String newElement) {
-		
+		setv.add(newElement);
+		return;
 
 	}
 
@@ -65,11 +71,25 @@ public class SetOfStrings {
 	 */
 	public void deleteElement(String element) throws NoSuchElementException {
 		
-	}
+		if (isMember(element) == true) {
+			setv.remove(element);
+			return;
+		} else {
+			throw new NoSuchElementException();
+			
+		}
+}
 
 	//helper method
 	private void addAllElements(SetOfStrings set1) {
-		
+		if (set1 != null) {
+			List<String> elements = set1.elements();
+			int i;
+			int sum = 0;
+			for (i = 0; i < elements.size(); i++) {
+				sum = sum + Integer.valueOf(elements.get(i)); 
+			}
+		}
 	}
 
 	/**
@@ -134,7 +154,7 @@ public class SetOfStrings {
 	 * @param set2 a SetOfStrings
 	 **/
 	public boolean subset(SetOfStrings set2) {
-
+		return true;
 	}
 
 	/**
