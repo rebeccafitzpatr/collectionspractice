@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Collections;
 
 public class SetOfStrings {
 	private List<String> setv;
@@ -10,7 +11,25 @@ public class SetOfStrings {
 	 */
 	public SetOfStrings() {
 		setv = new ArrayList<String>();
+		
 	}
+    public boolean equals(SetOfStrings obj) {
+			List<String> set1 = this.elements();
+			List<String> set2 = obj.elements();
+			for (String i: set1) {
+				if (!isMember(i)){
+					return false;
+				}
+			}
+			for (String j : set2) {
+					if (!isMember(j)) {
+							return false;
+				}
+        
+        }
+				return true;
+
+			}
 
 	/**
 	 * returns true if the SetOfStrings is an empty set false otherwise
@@ -56,8 +75,13 @@ public class SetOfStrings {
 	 * @param newElement a String
 	 */
 	public void insertElement(String newElement) {
-		setv.add(newElement);
-		return;
+		if (setv.contains(newElement) == false) {
+			
+			setv.add(newElement);
+		}
+
+		Collections.sort(setv);
+
 
 	}
 
@@ -71,23 +95,36 @@ public class SetOfStrings {
 	 */
 	public void deleteElement(String element) throws NoSuchElementException {
 		
-		if (isMember(element) == true) {
+		if (this.isMember(element) == true) {
 			setv.remove(element);
 			return;
 		} else {
-			throw new NoSuchElementException();
+			System.out.println("You can't delete a nonmember");
+			throw new NoSuchElementException("You can't delete a nonmember");
 			
 		}
+
+		
 }
 
 	//helper method
 	private void addAllElements(SetOfStrings set1) {
 		if (set1 != null) {
 			List<String> elements = set1.elements();
+
 			int i;
-			int sum = 0;
-			for (i = 0; i < elements.size(); i++) {
-				sum = sum + Integer.valueOf(elements.get(i)); 
+
+			for (String element : elements) {
+				for (i = 0; i < setv.size(); i++) {
+					if (setv.contains(element) == false) {
+			
+						setv.add(element);
+					}
+			}
+			
+				
+				
+				 
 			}
 		}
 	}
@@ -96,6 +133,8 @@ public class SetOfStrings {
 	 * determines the union of the current set with 'set2' and returns the new set
 	 * which is the union of these two sets. This operation SHOULDN'T MODIFY EITHER
 	 * OF THE INPUT SETS.
+	 * 
+	 * union means that for each element in the set it satisfies setA.contatins(e) or setB.contains(e);
 	 *
 	 * @param set2 a SetOfStrings
 	 */
